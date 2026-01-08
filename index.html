@@ -39,8 +39,10 @@
         }
 
         body {
-            /* USING YOUR UPLOADED IMAGE HERE */
+            /* Replace with your image if needed */
             background-image: url('image_292c72.png');
+            /* Fallback color if image doesn't load */
+            background-color: var(--bg-sage);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -59,7 +61,6 @@
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.5);
-            /* Slightly stronger overlay for readability */
             z-index: -1;
             pointer-events: none;
         }
@@ -334,73 +335,108 @@
         }
 
         /* =========================================
-           PAGE: CALENDAR & WRITE UP
+           PAGE: TIMELINE (REPLACED DATE)
            ========================================= */
-        .calendar-wrapper {
-            background: white;
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+        .timeline-wrapper {
+            position: relative;
+            max-width: 600px;
             margin: 0 auto;
+            padding-left: 30px;
+            /* Space for the line */
+            border-left: 3px solid var(--gold-accent);
+            /* The vertical line */
+            text-align: left;
         }
 
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .day-num {
-            padding: 8px;
+        .timeline-item::before {
+            /* The Dot/Flower */
+            content: '❀';
+            position: absolute;
+            left: -44px;
+            /* Adjust to sit on line */
+            top: 15px;
+            width: 25px;
+            height: 25px;
+            background: var(--dusty-rose);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 14px;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-date {
+            font-family: var(--font-title);
+            color: var(--dusty-rose);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
             font-family: var(--font-serif);
-            color: #888;
+            font-size: 1.2rem;
+            color: var(--dark-green);
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
-        .circle-date {
-            color: var(--dark-green);
-            font-weight: bold;
+        .timeline-desc {
+            font-family: var(--font-handwriting);
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* =========================================
+           PAGE: VIDEO SECTION 
+           ========================================= */
+        .video-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: rotate(0deg);
+            border: 1px solid #dddddd;
             position: relative;
         }
 
-        .circle-date::before {
+        /* Gold frame effect around video */
+        .video-wrapper::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            border: 2px solid #d9534f;
-            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2px solid var(--gold-accent);
+            pointer-events: none;
         }
 
-        /* NEW: Special Write Up Below Calendar */
-        .calendar-footer-note {
-            margin-top: 3rem;
-            padding: 2rem;
-            border-top: 1px solid var(--gold-accent);
-            border-bottom: 1px solid var(--gold-accent);
-            position: relative;
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            border-radius: 2px;
+            background: #000;
         }
 
-        .calendar-footer-note p {
-            font-family: var(--font-calligraphy);
-            font-size: 1.8rem;
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        .calendar-footer-note::before {
-            content: '❝';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--parchment);
-            padding: 0 10px;
-            font-size: 3rem;
-            color: var(--gold-accent);
+        .video-caption {
+            margin-top: 15px;
+            font-family: var(--font-handwriting);
+            font-size: 1.5rem;
+            color: var(--dark-green);
         }
 
         /* =========================================
@@ -424,14 +460,12 @@
             width: 300px;
             height: 200px;
             background: #cbb29b;
-            /* Darker craft paper */
             position: relative;
             border-radius: 0 0 5px 5px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .envelope::after {
-            /* Bottom fold */
             content: '';
             position: absolute;
             bottom: 0;
@@ -443,7 +477,6 @@
         }
 
         .envelope::before {
-            /* Side folds */
             content: '';
             position: absolute;
             bottom: 0;
@@ -473,7 +506,6 @@
             z-index: 1;
         }
 
-        /* The Actual Letter Paper */
         .letter-content {
             position: absolute;
             top: 10px;
@@ -481,7 +513,6 @@
             width: 270px;
             height: 180px;
             background: #fffdf9;
-            /* Cream paper */
             padding: 20px;
             transition: 0.8s ease-in-out;
             z-index: 2;
@@ -490,10 +521,8 @@
             flex-direction: column;
             align-items: center;
             border: 1px solid #e0d0b0;
-            /* Subtle stationery border */
         }
 
-        /* Letter Text Styling */
         .letter-content p {
             font-family: var(--font-script);
             font-size: 1.4rem;
@@ -502,11 +531,9 @@
             line-height: 1.5;
             margin-bottom: 10px;
             opacity: 0;
-            /* Hidden initially */
             transition: opacity 0.5s 0.3s;
         }
 
-        /* Open State Animation */
         .envelope-wrapper.open .letter-content {
             transform: translateY(-220px);
             height: 400px;
@@ -517,7 +544,6 @@
 
         .envelope-wrapper.open .letter-content p {
             opacity: 1;
-            /* Show text when open */
         }
 
         .seal {
@@ -528,7 +554,6 @@
             width: 40px;
             height: 40px;
             background: #a93226;
-            /* Deep red wax */
             border-radius: 50%;
             z-index: 5;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -543,30 +568,6 @@
 
         .envelope-wrapper.open .seal {
             opacity: 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            nav {
-                gap: 5px;
-                padding: 10px;
-            }
-
-            nav button {
-                font-size: 0.7rem;
-            }
-
-            .memories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .calendar-footer-note p {
-                font-size: 1.4rem;
-            }
         }
 
         /* WATERMARK STYLES */
@@ -586,8 +587,25 @@
         }
 
         @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                gap: 5px;
+                padding: 10px;
+            }
+
+            nav button {
+                font-size: 0.7rem;
+            }
+
+            .memories-grid {
+                grid-template-columns: 1fr;
+            }
+
             .watermark {
-                font-size: 2rem;
+                font-size: 1.2rem;
                 bottom: 5px;
             }
 
@@ -606,9 +624,10 @@
         <nav>
             <button onclick="showSection('hero')" class="active">Home</button>
             <button onclick="showSection('bouquet')">Bouquet</button>
-            <button onclick="showSection('music')">Your Song</button>
+            <button onclick="showSection('timeline')">Journey</button>
             <button onclick="showSection('memories')">Memories</button>
-            <button onclick="showSection('calendar')">Date</button>
+            <button onclick="showSection('video-section')">Film</button>
+            <button onclick="showSection('music')">Song</button>
             <button onclick="showSection('letter')">Letter</button>
         </nav>
     </div>
@@ -616,6 +635,7 @@
     <div class="container">
 
         <div id="hero" class="section active">
+            <div class="watermark">made by aurea ink and designs</div>
             <div class="paper-card">
                 <p style="font-family: var(--font-title); font-size: 1rem; color: var(--gold-accent);">My Love,</p>
                 <h1>Happy Birthday</h1>
@@ -638,24 +658,40 @@
             </div>
         </div>
 
-        <div id="music" class="section">
-            <div class="paper-card" style="background-color: rgba(255,255,255,0.9);">
-                <h2>A Song Dedicated to You</h2>
+        <div id="timeline" class="section">
+            <div class="paper-card">
+                <h2>Our Journey</h2>
 
-                <div class="music-wrapper">
-                    <div class="vinyl-record"></div>
+                <div class="timeline-wrapper">
 
-                    <p style="font-family: var(--font-handwriting); font-size: 1.4rem;">
-                        Every time I hear this, I think of you...
-                    </p>
-
-                    <div class="spotify-container">
-                        <iframe data-testid="embed-iframe" style="border-radius:12px"
-                            src="https://open.spotify.com/embed/track/1dGr1c8CrMLDpV6mPbImSI?utm_source=generator"
-                            width="100%" height="352" frameBorder="0" allowfullscreen=""
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                            loading="lazy"></iframe>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Oct 14, 2024</div>
+                        <div class="timeline-title">The First Meeting</div>
+                        <div class="timeline-desc">I was nervous, you were glowing. The moment you smiled, I knew I was
+                            in trouble.</div>
                     </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Nov 02, 2024</div>
+                        <div class="timeline-title">The First "Yes"</div>
+                        <div class="timeline-desc">Asking you out was the scariest thing I've done, but your yes was the
+                            sweetest sound.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Dec 31, 2024</div>
+                        <div class="timeline-title">New Year's Eve</div>
+                        <div class="timeline-desc">Watching the fireworks reflected in your eyes. I knew my year was
+                            already made.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Today</div>
+                        <div class="timeline-title">Your Special Day</div>
+                        <div class="timeline-desc">Celebrating the amazing person you are. Here is to a thousand more
+                            memories.</div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -668,7 +704,6 @@
                 </h2>
 
                 <div class="memories-grid">
-
                     <div class="memory-card">
                         <div class="memory-img-container">
                             <img src="https://images.unsplash.com/photo-1522673607200-1645062cd958?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
@@ -677,7 +712,7 @@
                         <div class="memory-text">
                             <h3>The Beginning</h3>
                             <p>Write your story here... remember the first time we met? I was so nervous but your smile
-                                made everything okay. I knew right then that you were special.</p>
+                                made everything okay.</p>
                         </div>
                     </div>
 
@@ -689,7 +724,7 @@
                         <div class="memory-text">
                             <h3>Our Adventures</h3>
                             <p>Write your story here... that time we went on that trip and got lost but it didn't matter
-                                because I was with you. Best day ever.</p>
+                                because I was with you.</p>
                         </div>
                     </div>
 
@@ -701,7 +736,7 @@
                         <div class="memory-text">
                             <h3>Silly Moments</h3>
                             <p>Write your story here... I love how we can just laugh at absolutely nothing. You are my
-                                best friend and my partner in crime.</p>
+                                best friend.</p>
                         </div>
                     </div>
 
@@ -716,63 +751,43 @@
                                 Thank you for being you.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <div id="calendar" class="section">
+        <div id="video-section" class="section">
             <div class="paper-card">
-                <h2>The Special Date</h2>
-                <div class="calendar-wrapper">
-                    <div style="text-align:center; font-family:var(--font-title); margin-bottom:10px;">January 2026
-                    </div>
-                    <div class="calendar-grid">
-                        <div class="day-num">S</div>
-                        <div class="day-num">M</div>
-                        <div class="day-num">T</div>
-                        <div class="day-num">W</div>
-                        <div class="day-num">T</div>
-                        <div class="day-num">F</div>
-                        <div class="day-num">S</div>
+                <h2>Our Film</h2>
+                <p style="margin-bottom: 20px;">A little clip of happiness.</p>
 
-                        <div class="day-num"></div>
-                        <div class="day-num"></div>
-                        <div class="day-num"></div>
-                        <div class="day-num"></div>
-                        <div class="day-num">1</div>
-                        <div class="day-num">2</div>
-                        <div class="day-num">3</div>
-                        <div class="day-num">4</div>
-                        <div class="day-num">5</div>
-                        <div class="day-num">6</div>
-                        <div class="day-num">7</div>
-                        <div class="day-num">8</div>
-                        <div class="day-num">9</div>
-                        <div class="day-num">10</div>
-                        <div class="day-num">11</div>
-                        <div class="day-num">12</div>
-                        <div class="day-num">13</div>
-                        <div class="day-num">14</div>
-
-                        <div class="circle-date day-num">15</div>
-
-                        <div class="day-num">16</div>
-                        <div class="day-num">17</div>
-                        <div class="day-num">18</div>
-                        <div class="day-num">19</div>
-                        <div class="day-num">20</div>
-                        <div class="day-num">21</div>
-                        <div class="day-num">22</div>
-                        <div class="day-num">23</div>
-                        <div class="day-num">24</div>
-                    </div>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
 
-                <div class="calendar-footer-note">
-                    <p>In a world where time rushes by, this specific date stands still in my heart. It is the moment
-                        the stars aligned to bring my favorite person into existence.</p>
-                    <p style="margin-top: 10px;">Because of this day, my every day is brighter.</p>
+                <div class="video-caption">
+                    Caught in 4K ♡
+                </div>
+            </div>
+        </div>
+
+        <div id="music" class="section">
+            <div class="paper-card" style="background-color: rgba(255,255,255,0.9);">
+                <h2>A Song Dedicated to You</h2>
+                <div class="music-wrapper">
+                    <div class="vinyl-record"></div>
+                    <p style="font-family: var(--font-handwriting); font-size: 1.4rem;">
+                        Every time I hear this, I think of you...
+                    </p>
+                    <div class="spotify-container">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px"
+                            src="https://open.spotify.com/embed/track/1dGr1c8CrMLDpV6mPbImSI?utm_source=generator"
+                            width="100%" height="352" frameBorder="0" allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -785,7 +800,6 @@
                         <div class="envelope">
                             <div class="flap"></div>
                             <div class="seal">❤</div>
-
                             <div class="letter-content">
                                 <p><strong>My Dearest,</strong></p>
                                 <p>Happy Birthday! You are the music in my life and the color in my world.</p>
@@ -801,13 +815,19 @@
         </div>
 
     </div>
-    <div class="watermark">made by aurea ink and designs</div>
+
+
     <script>
         function showSection(sectionId) {
+            // Hide all sections
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            // Show selected section
             document.getElementById(sectionId).classList.add('active');
 
+            // Update Navbar buttons
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+
+            // Highlight the correct button
             const activeBtn = Array.from(document.querySelectorAll('nav button'))
                 .find(b => b.getAttribute('onclick').includes(sectionId));
             if (activeBtn) activeBtn.classList.add('active');
@@ -817,7 +837,7 @@
             element.classList.toggle('open');
         }
 
-        // Falling Petals
+        // Falling Petals Logic
         function createPetal() {
             const petal = document.createElement('div');
             petal.classList.add('petal');
@@ -830,6 +850,5 @@
         setInterval(createPetal, 400);
     </script>
 </body>
-
 
 </html>
