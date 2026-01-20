@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&family=Shadows+Into+Light&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&family=Shadows+Into+Light&family=Dancing+Script:wght@400;600&display=swap"
         rel="stylesheet">
 
     <style>
@@ -30,6 +30,8 @@
             --font-serif: 'Lora', serif;
             --font-title: 'Cinzel', serif;
             --font-handwriting: 'Shadows Into Light', cursive;
+            /* New Font for Letter */
+            --font-letter: 'Dancing Script', cursive; 
         }
 
         * {
@@ -335,16 +337,14 @@
         }
 
         /* =========================================
-           PAGE: TIMELINE (REPLACED DATE)
+           PAGE: TIMELINE
            ========================================= */
         .timeline-wrapper {
             position: relative;
             max-width: 600px;
             margin: 0 auto;
             padding-left: 30px;
-            /* Space for the line */
             border-left: 3px solid var(--gold-accent);
-            /* The vertical line */
             text-align: left;
         }
 
@@ -359,11 +359,9 @@
         }
 
         .timeline-item::before {
-            /* The Dot/Flower */
             content: '❀';
             position: absolute;
             left: -44px;
-            /* Adjust to sit on line */
             top: 15px;
             width: 25px;
             height: 25px;
@@ -408,12 +406,10 @@
             padding: 15px;
             background: #fff;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transform: rotate(0deg);
             border: 1px solid #dddddd;
             position: relative;
         }
 
-        /* Gold frame effect around video */
         .video-wrapper::after {
             content: '';
             position: absolute;
@@ -433,10 +429,41 @@
         }
 
         .video-caption {
-            margin-top: 15px;
-            font-family: var(--font-handwriting);
-            font-size: 1.5rem;
+            margin-top: 25px;
+            font-family: var(--font-letter);
+            font-size: 2rem;
             color: var(--dark-green);
+        }
+
+        /* =========================================
+           PAGE: SINGLE IMAGE SECTION 
+           ========================================= */
+        .polaroid-frame {
+            background: #fff;
+            padding: 20px 20px 60px 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            max-width: 500px;
+            margin: 20px auto;
+            transform: rotate(-1deg);
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .polaroid-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #eee;
+        }
+
+        .image-description {
+            font-family: var(--font-handwriting);
+            font-size: 1.4rem;
+            margin-top: 30px;
+            color: #444;
         }
 
         /* =========================================
@@ -523,12 +550,14 @@
             border: 1px solid #e0d0b0;
         }
 
+        /* UPDATED FONT FOR LETTER CONTENT */
         .letter-content p {
-            font-family: var(--font-script);
-            font-size: 1.4rem;
+            font-family: var(--font-letter); /* Uses Dancing Script */
+            font-size: 1.3rem; /* Adjusted for readability */
+            font-weight: 500;
             color: #4a3b32;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 10px;
             opacity: 0;
             transition: opacity 0.5s 0.3s;
@@ -626,6 +655,10 @@
             <button onclick="showSection('bouquet')">Bouquet</button>
             <button onclick="showSection('timeline')">Journey</button>
             <button onclick="showSection('memories')">Memories</button>
+            
+            <button onclick="showSection('video-section')">Video</button>
+            <button onclick="showSection('single-image')">Special</button>
+            
             <button onclick="showSection('music')">Song</button>
             <button onclick="showSection('letter')">Letter</button>
         </nav>
@@ -779,6 +812,35 @@
             
         </div>
 
+        <div id="video-section" class="section">
+            <div class="paper-card">
+                <h2>Moments in Motion</h2>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="your_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p class="video-caption">"A memory I keep replaying..."</p>
+            </div>
+        </div>
+
+        <div id="single-image" class="section">
+            <div class="paper-card">
+                <h2>A Moment Frozen in Time</h2>
+                
+                <div class="polaroid-frame">
+                    <img src="special_image.jpg" alt="Special Memory">
+                    
+                    <div class="image-description">
+                        This specific moment means the world to me. 
+                        It’s the way the light caught your eyes, or maybe just the fact that 
+                        I realized in this exact second, I was home.
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="music" class="section">
             <div class="paper-card" style="background-color: rgba(255,255,255,0.9);">
                 <h2>A Song Dedicated to You</h2>
@@ -861,4 +923,5 @@
 </body>
 
 </html>
+
 
